@@ -1,0 +1,225 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ------------------------------------------------------
+// 1. User & Auth (Base Layer)
+// ------------------------------------------------------
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+
+  name      String?
+  avatarUrl String?
+
+  artistProfile    ArtistProfile?
+  organizerProfile OrganizerProfile?
+  venueProfile     VenueProfile?
+
+  bookings         Booking[]
+  reviews          Review[]
+
+  followedArtists    ArtistFollow[]
+  followedOrganizers OrganizerFollow[]
+  followedVenues     VenueFollow[]
+
+  likedGenres UserGenre[]
+  targetAreas UserArea[]
+}
+
+// ------------------------------------------------------
+// 2. Role Profiles
+// ------------------------------------------------------
+
+model ArtistProfile {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  artistName  String
+  bio         String?
+  scLink      String?
+  spotifyLink String?
+
+  events    EventArtist[]
+  followers ArtistFollow[]
+}
+
+model OrganizerProfile {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  orgName String
+
+  events    Event[]
+  followers OrganizerFollow[]
+}
+
+model VenueProfile {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  venueName  String
+  address    String
+  city       String
+  prefecture String
+  capacity   Int?
+
+  events    Event[]
+  followers VenueFollow[]
+}
+
+// ------------------------------------------------------
+// 3. Events & Bookings
+// ------------------------------------------------------
+
+model Event {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  imageUrl    String?
+  startAt     DateTime
+  endAt       DateTime
+
+  organizerId String
+  organizer   OrganizerProfile @relation(fields: [organizerId], references: [id])
+
+  venueId String
+  venue   VenueProfile @relation(fields: [venueId], references: [id])
+
+  artists  EventArtist[]
+  genres   EventGenre[]
+  bookings Booking[]
+
+  bookingLimit Int?
+
+  @@index([startAt])
+  @@index([venueId])
+  @@index([organizerId])
+}
+
+model Booking {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id])
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  guestName String
+  count     Int
+  status    String // PENDING | CONFIRMED | CANCELED
+
+  @@index([eventId])
+  @@index([userId])
+}
+
+model EventArtist {
+  eventId  String
+  event    Event         @relation(fields: [eventId], references: [id])
+  artistId String
+  artist   ArtistProfile @relation(fields: [artistId], references: [id])
+
+  @@id([eventId, artistId])
+}
+
+// ------------------------------------------------------
+// 4. Master Data & Join Tables
+// ------------------------------------------------------
+
+model Genre {
+  id   String @id @default(uuid())
+  name String @unique
+
+  users  UserGenre[]
+  events EventGenre[]
+}
+
+model UserGenre {
+  userId  String
+  user    User   @relation(fields: [userId], references: [id])
+  genreId String
+  genre   Genre  @relation(fields: [genreId], references: [id])
+
+  @@id([userId, genreId])
+}
+
+model EventGenre {
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id])
+  genreId String
+  genre   Genre  @relation(fields: [genreId], references: [id])
+
+  @@id([eventId, genreId])
+}
+
+model UserArea {
+  id         String  @id @default(uuid())
+  userId     String
+  user       User    @relation(fields: [userId], references: [id])
+  prefecture String
+  city       String?
+
+  @@index([userId])
+}
+
+// ------------------------------------------------------
+// 5. Social Graph (Follows)
+// ------------------------------------------------------
+
+model ArtistFollow {
+  userId   String
+  user     User          @relation(fields: [userId], references: [id])
+  artistId String
+  artist   ArtistProfile @relation(fields: [artistId], references: [id])
+
+  @@id([userId, artistId])
+}
+
+model OrganizerFollow {
+  userId      String
+  user        User             @relation(fields: [userId], references: [id])
+  organizerId String
+  organizer   OrganizerProfile @relation(fields: [organizerId], references: [id])
+
+  @@id([userId, organizerId])
+}
+
+model VenueFollow {
+  userId  String
+  user    User         @relation(fields: [userId], references: [id])
+  venueId String
+  venue   VenueProfile @relation(fields: [venueId], references: [id])
+
+  @@id([userId, venueId])
+}
+
+// ------------------------------------------------------
+// 6. Reviews
+// ------------------------------------------------------
+
+model Review {
+  id      String  @id @default(uuid())
+  content String?
+  rating  Int?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  eventId String?
+
+  @@index([userId])
+  @@index([eventId])
+}
