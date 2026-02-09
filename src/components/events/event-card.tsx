@@ -22,9 +22,20 @@ export function EventCard({ event, variant = "default" }: EventCardProps) {
           transition={{ duration: 0.3 }}
           className="group relative overflow-hidden rounded-lg border border-border bg-white shadow-sm hover:shadow-md transition-shadow"
         >
-          <div
-            className={`aspect-[21/9] w-full bg-gradient-to-br ${event.gradient} sm:aspect-[3/1]`}
-          />
+          {event.imageUrl ? (
+            <div className="aspect-[21/9] w-full sm:aspect-[3/1]">
+              <img
+                src={event.imageUrl}
+                alt={event.title}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          ) : (
+            <div
+              className={`aspect-[21/9] w-full bg-gradient-to-br ${event.gradient} sm:aspect-[3/1]`}
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           <div className="absolute inset-0 flex flex-col justify-between p-5 sm:p-8">
             <div className="flex items-center gap-2">
               <Badge className="bg-primary text-primary-foreground text-[10px] font-semibold uppercase tracking-wider">
@@ -67,9 +78,20 @@ export function EventCard({ event, variant = "default" }: EventCardProps) {
         transition={{ duration: 0.25 }}
         className="group relative overflow-hidden rounded-lg border border-border bg-white shadow-sm hover:shadow-md transition-shadow"
       >
-        <div
-          className={`aspect-[4/5] w-full bg-gradient-to-br ${event.gradient}`}
-        />
+        {event.imageUrl ? (
+          <div className="aspect-[4/5] w-full">
+            <img
+              src={event.imageUrl}
+              alt={event.title}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        ) : (
+          <div
+            className={`aspect-[4/5] w-full bg-gradient-to-br ${event.gradient}`}
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
         <div className="absolute inset-0 flex flex-col justify-between p-4">
           <div className="flex flex-wrap gap-1.5">
             {event.genres.map((g) => (

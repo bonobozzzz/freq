@@ -29,12 +29,20 @@ export default async function EventDetailPage({
 
   return (
     <>
-      {/* ===== ヒーロー（グラデーション維持） ===== */}
+      {/* ===== ヒーロー ===== */}
       <section className="relative overflow-hidden">
-        <div
-          className={`absolute inset-0 bg-gradient-to-br ${event.gradient}`}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/40 to-transparent" />
+        {event.imageUrl ? (
+          <img
+            src={event.imageUrl}
+            alt={event.title}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ) : (
+          <div
+            className={`absolute inset-0 bg-gradient-to-br ${event.gradient}`}
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/50 to-gray-950/30" />
 
         <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-20 sm:pb-16 sm:pt-28 lg:px-6">
           <div className="flex flex-wrap gap-2">

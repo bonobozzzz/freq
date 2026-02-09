@@ -359,6 +359,7 @@ export const MOCK_EVENTS: MockEvent[] = [
     genres: ["Tech House", "House"],
     artistIds: ["a15"],
     gradient: "from-amber-950/70 via-zinc-950 to-black",
+    imageUrl: "https://www.womb.co.jp/en/admin-event/wp-content/uploads/2026/02/020626MICHAEL-BIBI980.jpg",
     featured: true,
   },
   {
@@ -375,6 +376,7 @@ export const MOCK_EVENTS: MockEvent[] = [
     genres: ["Techno", "House"],
     artistIds: ["a14"],
     gradient: "from-indigo-950/70 via-zinc-950 to-black",
+    imageUrl: "https://www.womb.co.jp/en/admin-event/wp-content/uploads/2025/12/020726SR-x-PM980.jpg",
   },
   {
     id: "e3",
@@ -390,6 +392,7 @@ export const MOCK_EVENTS: MockEvent[] = [
     genres: ["House"],
     artistIds: [],
     gradient: "from-emerald-950/60 via-zinc-950 to-black",
+    imageUrl: "https://www.womb.co.jp/en/admin-event/wp-content/uploads/2026/02/021326COMPASS980.jpeg",
   },
   {
     id: "e4",
@@ -405,6 +408,7 @@ export const MOCK_EVENTS: MockEvent[] = [
     genres: ["Techno", "House"],
     artistIds: ["a13"],
     gradient: "from-purple-950/80 via-zinc-950 to-black",
+    imageUrl: "https://www.womb.co.jp/en/admin-event/wp-content/uploads/2026/02/021426.jpg",
     featured: true,
   },
   {
@@ -421,6 +425,7 @@ export const MOCK_EVENTS: MockEvent[] = [
     genres: ["Drum & Bass", "Techno"],
     artistIds: [],
     gradient: "from-cyan-950/70 via-zinc-950 to-black",
+    imageUrl: "https://www.womb.co.jp/en/admin-event/wp-content/uploads/2026/02/021826RECOMBINATION980.jpg",
   },
   {
     id: "e6",
@@ -436,6 +441,7 @@ export const MOCK_EVENTS: MockEvent[] = [
     genres: ["Techno"],
     artistIds: ["a16"],
     gradient: "from-zinc-800/60 via-zinc-950 to-black",
+    imageUrl: "https://www.womb.co.jp/en/admin-event/wp-content/uploads/2026/02/022126SESSION980.jpg",
   },
   {
     id: "e7",
@@ -451,6 +457,7 @@ export const MOCK_EVENTS: MockEvent[] = [
     genres: ["Techno"],
     artistIds: [],
     gradient: "from-rose-950/60 via-zinc-950 to-black",
+    imageUrl: "https://www.womb.co.jp/en/admin-event/wp-content/uploads/2026/02/022226FORCE980.jpg",
   },
   {
     id: "e8",
@@ -466,6 +473,7 @@ export const MOCK_EVENTS: MockEvent[] = [
     genres: ["Techno"],
     artistIds: ["a6"],
     gradient: "from-fuchsia-950/60 via-zinc-950 to-black",
+    imageUrl: "https://www.womb.co.jp/en/admin-event/wp-content/uploads/2026/02/022726KILLINA980.jpg",
   },
   {
     id: "e9",
@@ -481,6 +489,7 @@ export const MOCK_EVENTS: MockEvent[] = [
     genres: ["Techno", "House"],
     artistIds: ["a7"],
     gradient: "from-sky-950/60 via-zinc-950 to-black",
+    imageUrl: "https://www.womb.co.jp/en/admin-event/wp-content/uploads/2026/02/022826ELEVATOR980.jpg",
   },
   {
     id: "e10",
@@ -496,6 +505,7 @@ export const MOCK_EVENTS: MockEvent[] = [
     genres: ["House", "Techno"],
     artistIds: ["a5"],
     gradient: "from-pink-950/60 via-zinc-950 to-black",
+    imageUrl: "https://www.womb.co.jp/en/admin-event/wp-content/uploads/2026/03/030626Love-International-x-RDC980.jpg",
   },
   {
     id: "e11",
@@ -511,6 +521,7 @@ export const MOCK_EVENTS: MockEvent[] = [
     genres: ["Techno"],
     artistIds: ["a1", "a7"],
     gradient: "from-slate-800/70 via-zinc-950 to-black",
+    imageUrl: "https://www.womb.co.jp/en/admin-event/wp-content/uploads/2026/02/031326REPRISE980.jpg",
     featured: true,
   },
   {
