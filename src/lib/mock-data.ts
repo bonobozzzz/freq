@@ -8,8 +8,15 @@ export type MockArtist = {
   name: string;
   genres: string[];
   bio: string;
-  scLink?: string;
-  spotifyLink?: string;
+  links?: {
+    x?: string;
+    instagram?: string;
+    soundcloud?: string;
+    bandcamp?: string;
+    spotify?: string;
+    appleMusic?: string;
+    amazonMusic?: string;
+  };
 };
 
 export type MockVenue = {
@@ -113,53 +120,85 @@ export const MOCK_ARTISTS: MockArtist[] = [
     name: "KØSMOS",
     genres: ["Techno", "Industrial"],
     bio: "ベルリンのアンダーグラウンドから放たれる、容赦ない4つ打ちのプレッシャー。儀式とレイヴの境界を溶かすマラソンセットで知られる。",
-    scLink: "https://soundcloud.com",
+    links: {
+      soundcloud: "https://soundcloud.com/kosmos",
+      x: "https://x.com/kosmos",
+      instagram: "https://instagram.com/kosmos",
+    },
   },
   {
     id: "a2",
     name: "Yūrei",
     genres: ["Ambient", "Experimental"],
     bio: "東京発のスペクトラルなサウンドスケープ。フィールドレコーディングとグラニュラーシンセシスを融合し、幻想的なテクスチャーを生み出す。",
+    links: {
+      bandcamp: "https://yurei.bandcamp.com",
+      instagram: "https://instagram.com/yurei",
+    },
   },
   {
     id: "a3",
     name: "NERVE",
     genres: ["Techno", "Minimal"],
     bio: "精密に設計されたミニマルテクノ。すべての音には意図があり、すべての静寂は武器だ。",
-    spotifyLink: "https://spotify.com",
+    links: {
+      spotify: "https://open.spotify.com/artist/nerve",
+      appleMusic: "https://music.apple.com/artist/nerve",
+      x: "https://x.com/nerve",
+    },
   },
   {
     id: "a4",
     name: "Sōma",
     genres: ["Deep House", "House"],
     bio: "シカゴのヘリテージに根ざしたディープグルーヴを、深夜の東京というレンズを通して表現。闇の中の温もり。",
-    scLink: "https://soundcloud.com",
+    links: {
+      soundcloud: "https://soundcloud.com/soma",
+      spotify: "https://open.spotify.com/artist/soma",
+      instagram: "https://instagram.com/soma",
+    },
   },
   {
     id: "a5",
     name: "AcidWitch",
     genres: ["Techno", "Industrial"],
     bio: "深淵から這い出る、アシッドまみれのディストーション・ヘビーテクノ。心臓の弱い者はお断り。",
+    links: {
+      soundcloud: "https://soundcloud.com/acidwitch",
+      bandcamp: "https://acidwitch.bandcamp.com",
+    },
   },
   {
     id: "a6",
     name: "DRKRM",
     genres: ["Minimal", "Techno"],
     bio: "最小の構成で最大のインパクト。神経系を書き換える催眠的ループ。",
-    scLink: "https://soundcloud.com",
-    spotifyLink: "https://spotify.com",
+    links: {
+      soundcloud: "https://soundcloud.com/drkrm",
+      spotify: "https://open.spotify.com/artist/drkrm",
+      amazonMusic: "https://music.amazon.com/artists/drkrm",
+      x: "https://x.com/drkrm",
+    },
   },
   {
     id: "a7",
     name: "Pulse",
     genres: ["Drum & Bass", "Bass"],
     bio: "高速のベースプレッシャー。リキッドローラーからニューロファンクまで、常にテンポを上げ続ける。",
+    links: {
+      instagram: "https://instagram.com/pulse",
+      soundcloud: "https://soundcloud.com/pulse",
+    },
   },
   {
     id: "a8",
     name: "echo_",
     genres: ["Deep House", "Ambient"],
     bio: "ディープハウスがアンビエントに溶け込む場所。夜と夜明けの狭間をサウンドトラックする、長尺の瞑想的セット。",
+    links: {
+      bandcamp: "https://echo.bandcamp.com",
+      spotify: "https://open.spotify.com/artist/echo",
+    },
   },
 ];
 

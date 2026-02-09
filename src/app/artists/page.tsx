@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { SOCIAL_PLATFORMS } from "@/components/icons/social-icons";
 import { MOCK_ARTISTS, getArtistEvents } from "@/lib/mock-data";
 
 const sorted = [...MOCK_ARTISTS]
@@ -58,10 +58,11 @@ export default function ArtistsPage() {
                         <span className="text-sm font-medium text-primary">
                           出演予定 {events.length}件
                         </span>
-                        {(artist.scLink || artist.spotifyLink) && (
-                          <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                            <ExternalLink className="h-3 w-3" />
-                            リンクあり
+                        {artist.links && (
+                          <span className="flex items-center gap-1.5">
+                            {SOCIAL_PLATFORMS.filter((p) => artist.links?.[p.key]).map((p) => (
+                              <p.icon key={p.key} className="h-3.5 w-3.5 text-muted-foreground" />
+                            ))}
                           </span>
                         )}
                       </div>

@@ -14,6 +14,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
+import { AuthButtons, MobileAuthButtons } from "./auth-buttons";
 
 const NAV_LINKS = [
   { href: "/events", label: "イベント" },
@@ -82,16 +83,7 @@ export function Header() {
           <Separator orientation="vertical" className="mx-1 h-5" />
 
           {/* Auth */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="h-9 px-3 text-sm text-muted-foreground hover:text-foreground"
-          >
-            ログイン
-          </Button>
-          <Button size="sm" className="h-9 px-4 text-sm font-semibold">
-            新規登録
-          </Button>
+          <AuthButtons />
         </div>
 
         {/* Mobile Hamburger */}
@@ -157,14 +149,7 @@ export function Header() {
 
               <Separator />
 
-              <div className="flex flex-col gap-2">
-                <Button variant="outline" className="w-full text-sm">
-                  ログイン
-                </Button>
-                <Button className="w-full text-sm font-semibold">
-                  新規登録
-                </Button>
-              </div>
+              <MobileAuthButtons />
             </div>
           </SheetContent>
         </Sheet>

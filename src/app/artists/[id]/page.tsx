@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { EventCard } from "@/components/events/event-card";
+import { SOCIAL_PLATFORMS } from "@/components/icons/social-icons";
 import { MOCK_ARTISTS, getArtist, getArtistEvents } from "@/lib/mock-data";
 
 export function generateStaticParams() {
@@ -21,6 +21,9 @@ export default async function ArtistDetailPage({
   if (!artist) notFound();
 
   const events = getArtistEvents(artist.id);
+  const activeLinks = SOCIAL_PLATFORMS.filter(
+    (p) => artist.links?.[p.key]
+  );
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
@@ -42,16 +45,7 @@ export default async function ArtistDetailPage({
           </div>
         </div>
 
-        <div className="flex gap-2">
-          <Button className="font-semibold">フォロー</Button>
-          {artist.scLink && (
-            <Button variant="outline" size="icon" className="h-9 w-9" asChild>
-              <a href={artist.scLink} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-4 w-4" />
-              </a>
-            </Button>
-          )}
-        </div>
+        <Button className="font-semibold">フォロー</Button>
       </div>
 
       <div className="mt-8 max-w-2xl">
@@ -59,6 +53,29 @@ export default async function ArtistDetailPage({
           {artist.bio}
         </p>
       </div>
+
+      {activeLinks.length > 0 && (
+        <div className="mt-6 flex flex-wrap gap-2">
+          {activeLinks.map((platform) => (
+            <Button
+              key={platform.key}
+              variant="outline"
+              size="sm"
+              className="gap-2 text-sm"
+              asChild
+            >
+              <a
+                href={artist.links![platform.key]!}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <platform.icon className="h-4 w-4" />
+                {platform.label}
+              </a>
+            </Button>
+          ))}
+        </div>
+      )}
 
       <Separator className="my-10" />
 
