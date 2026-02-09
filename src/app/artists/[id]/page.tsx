@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { FollowButton } from "@/components/follow-button";
 import { Separator } from "@/components/ui/separator";
 import { EventCard } from "@/components/events/event-card";
 import { SOCIAL_PLATFORMS } from "@/components/icons/social-icons";
@@ -45,7 +46,7 @@ export default async function ArtistDetailPage({
           </div>
         </div>
 
-        <Button className="font-semibold">フォロー</Button>
+        <FollowButton type="artist" id={artist.id} />
       </div>
 
       <div className="mt-8 max-w-2xl">

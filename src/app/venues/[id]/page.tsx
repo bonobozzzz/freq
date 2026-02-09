@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { MapPin, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { FollowButton } from "@/components/follow-button";
 import { EventCard } from "@/components/events/event-card";
 import { MOCK_VENUES, getVenue, getVenueEvents } from "@/lib/mock-data";
 
@@ -44,7 +45,7 @@ export default async function VenueDetailPage({
           </p>
         </div>
 
-        <Button className="w-fit font-semibold">会場をフォロー</Button>
+        <FollowButton type="venue" id={venue.id} />
       </div>
 
       <Separator className="my-10" />

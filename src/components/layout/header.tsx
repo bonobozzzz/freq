@@ -20,6 +20,7 @@ const NAV_LINKS = [
   { href: "/events", label: "イベント" },
   { href: "/artists", label: "アーティスト" },
   { href: "/venues", label: "会場" },
+  { href: "/mypage", label: "マイページ" },
 ] as const;
 
 export function Header() {
